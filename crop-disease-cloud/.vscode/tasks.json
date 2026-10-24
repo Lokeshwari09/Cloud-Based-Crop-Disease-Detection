@@ -1,0 +1,23 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "pip install -r requirements.txt",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: build and start (3 replicas + nginx)",
+      "type": "shell",
+      "command": "docker compose up --build -d",
+      "problemMatcher": []
+    },
+    {
+      "label": "Docker: stop",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": []
+    }
+  ]
+}

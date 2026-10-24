@@ -1,0 +1,72 @@
+{
+  "accuracy": 0.9833,
+  "per_class_recall": {
+    "healthy": 1.0,
+    "early_blight": 1.0,
+    "late_blight": 1.0,
+    "leaf_rust": 1.0,
+    "powdery_mildew": 0.9,
+    "mosaic_virus": 1.0
+  },
+  "classes": [
+    "healthy",
+    "early_blight",
+    "late_blight",
+    "leaf_rust",
+    "powdery_mildew",
+    "mosaic_virus"
+  ],
+  "confusion_matrix": [
+    [
+      20,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      20,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      20,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      20,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2,
+      18,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      20
+    ]
+  ],
+  "source": "synthetic",
+  "train_images": 360,
+  "test_images": 120
+}

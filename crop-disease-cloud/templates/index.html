@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crop Disease Detection</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <h1>&#127807; Cloud-Based Crop Disease Detection</h1>
+    <span class="node" id="node">node: &hellip;</span>
+  </div>
+</header>
+
+<main class="wrap grid">
+  <section class="card">
+    <h2>1. Upload a leaf photo</h2>
+    <label class="drop" id="drop">
+      <input type="file" id="file" accept="image/*" hidden>
+      <span id="dropText">Drag &amp; drop an image here, or click to choose</span>
+      <img id="preview" alt="" hidden>
+    </label>
+    <button id="analyze" class="primary" disabled>Analyze leaf</button>
+
+    <h3>No photo handy? Try a generated sample</h3>
+    <div class="chips">
+      {% for key, name in classes %}
+      <button class="chip" data-class="{{ key }}">{{ name }}</button>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="card" id="resultCard">
+    <h2>2. Diagnosis</h2>
+    <div id="empty" class="muted">Results will appear here.</div>
+    <div id="result" hidden>
+      <div class="verdict">
+        <div>
+          <div class="muted small">Detected</div>
+          <div class="label" id="rLabel"></div>
+        </div>
+        <div class="conf"><span id="rConf"></span><small>confidence</small></div>
+      </div>
+      <div class="meta">
+        <span>Severity: <b id="rSev"></b></span>
+        <span>Latency: <b id="rLat"></b></span>
+        <span>Served by: <b id="rNode"></b></span>
+      </div>
+      <p id="rCause" class="cause"></p>
+      <h3>Recommended action</h3>
+      <ul id="rTreat"></ul>
+      <h3>Class probabilities</h3>
+      <div id="rBars"></div>
+    </div>
+    <div id="error" class="error" hidden></div>
+  </section>
+
+  <section class="card wide">
+    <div class="row">
+      <h2>Cloud dashboard</h2>
+      <button class="link" id="refresh">Refresh</button>
+    </div>
+    <div class="stats">
+      <div><b id="sTotal">0</b><span>scans stored</span></div>
+      <div><b id="sLat">0</b><span>avg latency (ms)</span></div>
+      <div><b id="sStore">-</b><span>object storage</span></div>
+      <div><b id="sNodes">-</b><span>nodes that served requests</span></div>
+    </div>
+    <table>
+      <thead><tr><th>Image</th><th>Time</th><th>Result</th><th>Confidence</th><th>Severity</th><th>Node</th></tr></thead>
+      <tbody id="hist"></tbody>
+    </table>
+  </section>
+</main>
+
+<footer class="wrap muted small">Demo model trained on synthetic leaf images &middot; for real fields, retrain with a real dataset (see README).</footer>
+<script src="/static/app.js"></script>
+</body>
+</html>

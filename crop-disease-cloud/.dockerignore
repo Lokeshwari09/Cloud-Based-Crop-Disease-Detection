@@ -1,0 +1,16 @@
+.venv
+.vscode
+.git
+__pycache__
+*.pyc
+data
+dataset
+results
+tests
+docs
+scripts
+cloudsim_sim
+model
+nginx
+*.md
+*.zip

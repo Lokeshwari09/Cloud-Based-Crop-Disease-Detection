@@ -1,0 +1,40 @@
+# Cloud-Based Crop Disease Detection - local "cloud" with load balancing
+#
+#   docker compose up --build           -> 3 API replicas behind nginx on http://localhost:8080
+#   docker compose up --build --scale api=5   -> scale out to 5 replicas
+#   docker compose down                 -> stop (add -v to also delete stored scans)
+#
+# To use Amazon S3 for uploads instead of the local volume, copy .env.example to .env
+# and fill in USE_S3 / S3_BUCKET / AWS credentials.
+
+services:
+  api:
+    build: .
+    image: crop-disease-api:latest
+    environment:
+      - USE_S3=${USE_S3:-false}
+      - S3_BUCKET=${S3_BUCKET:-}
+      - AWS_REGION=${AWS_REGION:-ap-south-1}
+      # passed through only if you define them; on EC2 use an IAM role instead
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+    volumes:
+      - cropdata:/app/data
+    expose:
+      - "5000"
+    deploy:
+      replicas: 3
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  cropdata:

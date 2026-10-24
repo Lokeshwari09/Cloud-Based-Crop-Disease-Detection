@@ -1,0 +1,7 @@
+scenario,vms_start,vms_created,requests,avg_response_s,p95_response_s,max_response_s,sla_violations_pct,makespan_s,avg_vm_util_pct,vm_seconds,cost_usd
+"A: 2 VMs, round-robin",2,2,1093,27.17,52.17,55.45,80.8,159.6,89.9,319.0,0.0037
+"B: 4 VMs, round-robin",4,4,1093,4.32,12.11,14.95,55.2,119.8,59.9,479.0,0.0055
+"C: 4 VMs, least-loaded",4,4,1093,4.28,11.7,12.64,55.9,119.8,59.9,479.0,0.0055
+D: 7 VMs fixed (peak sized),7,7,1093,0.28,0.47,0.76,0.0,119.8,34.2,839.0,0.0097
+E: auto-scaling 2 -> 12 VMs,2,12,1093,3.59,7.71,8.15,57.1,119.8,35.4,718.0,0.0083
+F: auto-scaling 4 -> 12 (warm),4,10,1093,1.09,3.04,3.5,25.3,119.8,35.1,738.0,0.0085
